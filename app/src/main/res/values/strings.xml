@@ -3,4 +3,7 @@
     <string name="hr_limits">Hr limits</string>
     <string name="age">Age</string>
     <string name="result_is">"Result is %s - %s"</string>
+    <string name="upper_limit">Upper limit: %1$s</string>
+    <string name="lower_limit">Lower limit: %1$s</string>
+    <string name="invalid_age">Invalid age</string>
 </resources>

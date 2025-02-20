@@ -18,11 +18,10 @@ import com.example.myapplication.ui.viewmodels.HrViewModel
 
 @Composable
 fun HrScreen(modifier: Modifier, hrViewModel: HrViewModel = viewModel()) {
-    Column (
+    Column(
         modifier = modifier.padding(start = 8.dp, end = 8.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp)
-    )
-    {
+    ) {
         Text(
             text = stringResource(R.string.hr_limits),
             style = MaterialTheme.typography.titleLarge,
@@ -33,11 +32,24 @@ fun HrScreen(modifier: Modifier, hrViewModel: HrViewModel = viewModel()) {
         OutlinedTextField(
             modifier = Modifier.fillMaxWidth(),
             value = hrViewModel.ageInput,
-            onValueChange = {hrViewModel.ageInput = it},
-            label={ Text(stringResource(R.string.age))}
+            onValueChange = { hrViewModel.ageInput = it },
+            label = { Text(stringResource(R.string.age)) }
         )
-        Text (
-            text = stringResource(R.string.result_is, hrViewModel.lower, hrViewModel.upper)
-        )
+
+        // Проверяем, что значение верхнего и нижнего предела корректное
+        val upper = hrViewModel.upper
+        val lower = hrViewModel.lower
+
+        if (upper != -1.0f) {
+            Text(text = stringResource(R.string.upper_limit, upper))
+        } else {
+            Text(text = stringResource(R.string.invalid_age))
+        }
+
+        if (lower != -1.0f) {
+            Text(text = stringResource(R.string.lower_limit, lower))
+        } else {
+            Text(text = stringResource(R.string.invalid_age))
+        }
     }
 }
